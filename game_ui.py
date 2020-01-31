@@ -1,10 +1,5 @@
-import pygame
 import random
 import pygame
-from pygame.locals import *
-import tkinter as tk
-from tkinter import messagebox
-import sys
 
 width = 500
 cell_size = 25
