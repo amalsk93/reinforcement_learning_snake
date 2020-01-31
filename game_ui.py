@@ -24,7 +24,8 @@ class Cube():
     def create_cube(self, surf):
         x = self.pos[0]
         y = self.pos[1]
-        pygame.draw.rect(surf, self.color, (x, y, x + self.size, y + self.size))
+        print(x, x+1,  y, y+1)
+        pygame.draw.rect(surf, self.color, (x, y, self.size, self.size))
 
 
 def draw_grids(wid=width, size=cell_size):
@@ -35,15 +36,19 @@ def draw_grids(wid=width, size=cell_size):
         pygame.draw.line(win, (0, 0, 0), (0, i), (wid, i), 1)
 
 
-def generate_snack_cube(width):
-    x_pos = random.randrange(0, 500, 10)
-    y_pos = random.randrange(0, 500, 10)
-    return x_pos, y_pos
+def generate_snack_cube(cube_obj, surf,  wid=width):
+    x_pos = random.randrange(0, wid, cube_obj.size)
+    y_pos = random.randrange(0, wid, cube_obj.size)
+    cube_obj.pos = [x_pos,y_pos]
+    cube_obj.create_cube(surf)
+
 
 
 while flag:
     win.fill((255, 255, 255))
-    draw_grids(win, width, cell_size)
+    draw_grids()
+    snack = Cube()
+    generate_snack_cube(snack, win)
     pygame.display.update()
     pygame.time.delay(50)
     clock.tick(10)
